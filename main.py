@@ -19,9 +19,15 @@ def ip_to_aws_server(ip_address, aws_map, use_token=True):
     # Find the latitude and longitude for this IP address
     if use_token:
         ip_info_token = os.getenv("IPINFO_TOKEN")
-        ip_info = json.loads(requests.get(f"https://ipinfo.io/{ip_address}?token={ip_info_token}").text)
+        res = requests.get(f"https://ipinfo.io/{ip_address}?token={ip_info_token}")
+        if res.status_code == 429:
+            raise Exception('Rate limit (50k/mo) exceeded for IpInfo API. Use a different API token to proceed.')
+        ip_info = json.loads(res.text)
     else:
-        ip_info = json.loads(requests.get(f"https://ipinfo.io/{ip_address}").text)
+        res = requests.get(f"https://ipinfo.io/{ip_address}")
+        if res.status_code == 429:
+            raise Exception('Rate limit (1k/day) exceeded for IpInfo API. Supply an API token and try again.')
+        ip_info = json.loads(res.text)
     if 'bogon' in ip_info or 'loc' not in ip_info:
         # This means that the IP address is invalid or we could not find the lat and long, so we default to us-east-1
         return 'us-east-1'
