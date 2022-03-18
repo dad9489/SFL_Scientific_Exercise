@@ -16,12 +16,10 @@ is done using latitude and longitude data for the AWS data centers contained in 
 was obtained from: https://github.com/turnkeylinux/aws-datacenters/. To compute the distances, I use the geopy library.
 
 #### API Token
-While the IpInfo API allows many requests for free and without an account, you may run into issues if an API token is
-not supplied. In order to allow more requests per day, I made a free account and provided my API token in the `.env` file.
+In order to allow more API requests per day, I made a free account and provided my API token in the `.env` file.
 A free account can be made at https://ipinfo.io/signup. Alternatively, the program can be run with the `--ignore_token`
 flag (see Usage for more details). According to the API docs, only 1,000 requests/day are allowed without an API token.
-Through my testing, I have found that I can run the program multiple times without a token provided (totaling over 1,000
-requests), and it still does not return an error. If you are having issues, try supplying an API token.
+This should allow the program to be run once without supplying a token. Otherwise, a free token will need to be created.
 
 ### Load
 Once all the data is extracted and transformed, it can be loaded into the database. I use a PostgreSQL database for this.
