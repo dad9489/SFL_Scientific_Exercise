@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS SFL_DATA (
     last_name VARCHAR(40),
     email VARCHAR(40),
     gender VARCHAR(40),
-    ip_address inet
+    ip_address inet,
+    aws_server VARCHAR(40)
 );
