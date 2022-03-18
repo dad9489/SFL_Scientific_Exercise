@@ -30,9 +30,10 @@ The database name, user, and password must be supplied in the `.env` file for th
 
 ## Usage
 
-To properly run the program, some information needs to be added to the `.env` file. This file is in the `.gitignore`,
-so private data won't be committed. The database name, database user, and database password are all required for the
-load step. An API key for ipinfo.io is also required for the transform step if the `--ignore_token` flag is not set.
+To properly run the program, some information needs to be added to the `.env` file. This file holds private data, so to
+untrack it from git you can run `git rm --cached .env`. The database name, database user, and database password are all
+required for the load step. An API key for ipinfo.io is also required for the transform step if the `--ignore_token`
+flag is not set.
 
 To install the dependencies, run `pip install -r requirements.txt`.
 
