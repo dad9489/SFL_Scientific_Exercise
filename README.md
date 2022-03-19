@@ -26,6 +26,9 @@ Once all the data is extracted and transformed, it can be loaded into the databa
 The table schema is contained in `db/init.sql`. The data is committed to the database all at once in one bulk insert.
 The database name, user, and password must be supplied in the `.env` file for this to work properly.
 
+For idempotency, the database table is dropped every time the program is run. To change this, remove the first line of
+`init.sql`.
+
 ## Usage
 
 To properly run the program, some information needs to be added to the `.env` file. The database name, database user, and database password are all
